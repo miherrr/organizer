@@ -9,7 +9,30 @@
 import Foundation
 import UIKit
 
-struct EventType {
-    var title: String
-    var color: UIColor
+enum EventType {
+    case important
+    case notImportant
+    case routine
+    
+    var desctiption: String {
+        switch self {
+        case .important:
+            return "Важно"
+        case .notImportant:
+            return "Не очень важно"
+        case .routine:
+            return "Рутина"
+        }
+    }
+    
+    var color: UIColor {
+        switch self {
+        case .important:
+            return UIColor.red
+        case .notImportant:
+            return UIColor.blue
+        case .routine:
+            return UIColor.green
+        }
+    }
 }

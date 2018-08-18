@@ -14,13 +14,13 @@ class TimelineViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        timelineView.data = [
-//            TimelineViewModel(id: 0, title: "Первое событие", start: Date(), end: Date().addingTimeInterval(10_000)),
-//            TimelineViewModel(id: 1, title: "Второе событие", start: Date(), end: Date().addingTimeInterval(20_000)),
-//            TimelineViewModel(id: 2, title: "Долгое", start: Date(), end: Date().addingTimeInterval(60_000)),
-//            TimelineViewModel(id: 3, title: "Короткое событие с удивительно длинным названием", start: Date(), end: Date().addingTimeInterval(3_600))
-//        ]
-        timelineView.data = []
+        timelineView.data = [
+            TimelineModel(id: 0, title: "Первое событие", start: Date(), end: Date().addingTimeInterval(10_000), type: EventType.important),
+            TimelineModel(id: 1, title: "Второе событие", start: Date(), end: Date().addingTimeInterval(20_000), type: EventType.notImportant),
+            TimelineModel(id: 2, title: "Долгое", start: Date(), end: Date().addingTimeInterval(60_000), type: EventType.routine),
+            TimelineModel(id: 3, title: "Короткое событие с удивительно длинным названием", start: Date(), end: Date().addingTimeInterval(3_600), type: EventType.important)
+        ]
+//        timelineView.data = []
     }
 }
 
