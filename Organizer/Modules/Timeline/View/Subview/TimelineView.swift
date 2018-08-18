@@ -14,20 +14,19 @@ class TimelineView: UIView {
     /**
      Сюда передается массив данных для отображения на таймлайне
     */
-    var data: [TimelineViewModel] = [] {
+    var data: [TimelineModel] = [] {
         didSet {
-            if !data.isEmpty {
-                lineWidthConstraint.isActive = false
-                for item in data {
-                    addEventToTimeline(model: item)
-                }
+            lineWidthConstraint.isActive = data.isEmpty
+            
+            for item in data {
+                addEventToTimeline(model: item)
             }
         }
     }
     /**
      Вызывается, когда тапаем по событию на таймлайне
     */
-    var didSelectEvent: ((_ event: TimelineViewModel) -> Void)?
+    var didSelectEvent: ((_ event: TimelineModel) -> Void)?
     
     // MARK: - Private static vars
     private static let lineHeight: CGFloat = 5
@@ -80,7 +79,7 @@ class TimelineView: UIView {
         container = UIView(frame: .zero)
         addSubview(container.prepareForAutoLayout())
         container.pinEdgesToSuperviewEdges()
-        lineWidthConstraint = container.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - 32)
+        lineWidthConstraint = container.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width)
         lineWidthConstraint.isActive = true
         
         eventsStackView = UIStackView(frame: .zero)
@@ -89,22 +88,31 @@ class TimelineView: UIView {
         eventsStackView.axis = .horizontal
         eventsStackView.distribution = .equalSpacing
         eventsStackView.spacing = eventsSpacing
+        
+        let grayline = UIView()
+        container.addSubview(grayline.prepareForAutoLayout())
+        grayline.leadingAnchor ~= leadingAnchor
+        grayline.trailingAnchor ~= trailingAnchor
+        grayline.bottomAnchor ~= bottomAnchor
+        grayline.heightAnchor ~= TimelineView.lineHeight
+        grayline.layer.cornerRadius = TimelineView.lineHeight / 2
+        grayline.backgroundColor = .lightGray
     }
     
-    private func addEventToTimeline(model: TimelineViewModel) {
+    private func addEventToTimeline(model: TimelineModel) {
         let eventView = TimelineEventView(data: model, color: nextColor)
         eventsStackView.addArrangedSubview(eventView.prepareForAutoLayout())
     }
     
     @IBDesignable
     class TimelineEventView: UIView {
-        private let data: TimelineViewModel
+        private let data: TimelineModel
         private let fillColor: UIColor
         private var durationInHours: Double {
             return data.end.timeIntervalSince(data.start) / 3600.0
         }
         
-        init(data: TimelineViewModel, color: UIColor) {
+        init(data: TimelineModel, color: UIColor) {
             self.data = data
             self.fillColor = color
             super.init(frame: .zero)

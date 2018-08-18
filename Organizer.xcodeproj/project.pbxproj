@@ -14,9 +14,10 @@
 		049503D821285F2F00760EDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 049503D621285F2F00760EDE /* LaunchScreen.storyboard */; };
 		049503E321285F2F00760EDE /* OrganizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503E221285F2F00760EDE /* OrganizerTests.swift */; };
 		049503F02128621700760EDE /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503EF2128621700760EDE /* TimelineView.swift */; };
-		049503F22128623900760EDE /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503F12128623900760EDE /* TimelineViewModel.swift */; };
+		049503F22128623900760EDE /* TimelineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503F12128623900760EDE /* TimelineModel.swift */; };
 		049503F5212864B200760EDE /* LayoutMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503F4212864B200760EDE /* LayoutMagic.swift */; };
 		049503FD2128772900760EDE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503FC2128772900760EDE /* UIColor+Extension.swift */; };
+		049503FF21287B4D00760EDE /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503FE21287B4D00760EDE /* EventType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,9 +42,10 @@
 		049503E221285F2F00760EDE /* OrganizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizerTests.swift; sourceTree = "<group>"; };
 		049503E421285F2F00760EDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		049503EF2128621700760EDE /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
-		049503F12128623900760EDE /* TimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
+		049503F12128623900760EDE /* TimelineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineModel.swift; sourceTree = "<group>"; };
 		049503F4212864B200760EDE /* LayoutMagic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutMagic.swift; sourceTree = "<group>"; };
 		049503FC2128772900760EDE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		049503FE21287B4D00760EDE /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +154,8 @@
 		049503FA212871AF00760EDE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				049503F12128623900760EDE /* TimelineViewModel.swift */,
+				049503F12128623900760EDE /* TimelineModel.swift */,
+				049503FE21287B4D00760EDE /* EventType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -265,8 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049503FF21287B4D00760EDE /* EventType.swift in Sources */,
 				049503D021285F2A00760EDE /* TimelineViewController.swift in Sources */,
-				049503F22128623900760EDE /* TimelineViewModel.swift in Sources */,
+				049503F22128623900760EDE /* TimelineModel.swift in Sources */,
 				049503F5212864B200760EDE /* LayoutMagic.swift in Sources */,
 				049503FD2128772900760EDE /* UIColor+Extension.swift in Sources */,
 				049503F02128621700760EDE /* TimelineView.swift in Sources */,
