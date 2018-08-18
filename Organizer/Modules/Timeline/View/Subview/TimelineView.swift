@@ -69,7 +69,7 @@ class TimelineView: UIView {
         grayline.leadingAnchor ~= leadingAnchor
         grayline.trailingAnchor ~= trailingAnchor;
         // TODO: - такая магическая установка позиции - нехорошо. Надо исправить и получать позицию цветовой полосы динамически.
-        grayline.bottomAnchor ~= centerYAnchor + 3
+        grayline.bottomAnchor ~= centerYAnchor + 2.6
         grayline.heightAnchor ~= TimelineView.lineHeight
         grayline.layer.cornerRadius = TimelineView.lineHeight / 2
         grayline.backgroundColor = .lightGray
@@ -131,6 +131,7 @@ class TimelineView: UIView {
             titleLabel.font = UIFont.systemFont(ofSize: 14)
             titleLabel.text = data.title
             titleLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 749), for: .vertical)
+            titleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 749), for: .horizontal)
             
             let startDatelabel = UILabel()
             addSubview(startDatelabel.prepareForAutoLayout())

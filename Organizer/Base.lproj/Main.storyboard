@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,7 +43,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lIj-76-rAm" secondAttribute="trailing" id="Af4-Y0-EEt"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="lIj-76-rAm" secondAttribute="top" id="QiQ-w4-1oF"/>
+                            <constraint firstAttribute="topMargin" secondItem="lIj-76-rAm" secondAttribute="top" id="QiQ-w4-1oF"/>
                             <constraint firstItem="lIj-76-rAm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oeh-OM-vhd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
