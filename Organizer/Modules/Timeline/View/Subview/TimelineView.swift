@@ -10,6 +10,7 @@ import UIKit
 
 @IBDesignable
 class TimelineView: UIView {
+    // MARK: - Public vars
     /**
      Сюда передается массив данных для отображения на таймлайне
     */
@@ -28,15 +29,38 @@ class TimelineView: UIView {
     */
     var didSelectEvent: ((_ event: TimelineViewModel) -> Void)?
     
+    // MARK: - Private static vars
     private static let lineHeight: CGFloat = 5
     private static let maxEventWidth: CGFloat = 300
     // события разной длины. Эта константа указывает, сколько точек будет приходиться на час события
     private static let pointPerHout: CGFloat = 10
+    
+    // MARK: - Private vars
     private let eventsSpacing: CGFloat = 15
+    private let colors: [UIColor] = [
+        UIColor.colorFromRGB(rgbValue: 0x00c90d),
+        UIColor.colorFromRGB(rgbValue: 0x2219b2),
+        UIColor.colorFromRGB(rgbValue: 0xffc300),
+        UIColor.colorFromRGB(rgbValue: 0xff0700),
+        UIColor.colorFromRGB(rgbValue: 0x67e46f),
+        UIColor.colorFromRGB(rgbValue: 0x7872d8),
+        UIColor.colorFromRGB(rgbValue: 0xffde73),
+        UIColor.colorFromRGB(rgbValue: 0xff7673)
+    ]
+
+    private var currentColorIndex: Int = -1
+    private var nextColor: UIColor {
+        currentColorIndex += 1
+        if currentColorIndex >= colors.count {
+            currentColorIndex = 0
+        }
+        return colors[currentColorIndex]
+    }
     private var lineWidthConstraint: NSLayoutConstraint!
-    private var line: UIView!
+    private var container: UIView!
     private var eventsStackView: UIStackView!
     
+    // MARK: - Constructors
     override init(frame: CGRect) {
         super.init(frame: .zero)
         commonInit()
@@ -47,26 +71,20 @@ class TimelineView: UIView {
         commonInit()
     }
     
+    // MARK: - Private methods
     private func commonInit() {
         addSubviews()
     }
     
     private func addSubviews() {
-        line = UIView(frame: .zero)
-        addSubview(line.prepareForAutoLayout())
-        line.leadingAnchor ~= leadingAnchor
-        line.trailingAnchor ~= trailingAnchor
-        line.heightAnchor ~= TimelineView.lineHeight
-        line.bottomAnchor ~= bottomAnchor
-        lineWidthConstraint = line.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - 32)
+        container = UIView(frame: .zero)
+        addSubview(container.prepareForAutoLayout())
+        container.pinEdgesToSuperviewEdges()
+        lineWidthConstraint = container.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - 32)
         lineWidthConstraint.isActive = true
         
-        line.layer.cornerRadius = TimelineView.lineHeight / 2
-        line.backgroundColor = UIColor.lightGray
-        line.clipsToBounds = true
-        
         eventsStackView = UIStackView(frame: .zero)
-        line.addSubview(eventsStackView.prepareForAutoLayout())
+        container.addSubview(eventsStackView.prepareForAutoLayout())
         eventsStackView.pinEdgesToSuperviewEdges()
         eventsStackView.axis = .horizontal
         eventsStackView.distribution = .equalSpacing
@@ -74,8 +92,8 @@ class TimelineView: UIView {
     }
     
     private func addEventToTimeline(model: TimelineViewModel) {
-        let eventView = TimelineEventView(data: model, color: .green)
-        eventsStackView.addArrangedSubview(eventView)
+        let eventView = TimelineEventView(data: model, color: nextColor)
+        eventsStackView.addArrangedSubview(eventView.prepareForAutoLayout())
     }
     
     @IBDesignable
@@ -101,8 +119,10 @@ class TimelineView: UIView {
             let label = UILabel()
             addSubview(label.prepareForAutoLayout())
             label.topAnchor ~= topAnchor
-            label.leadingAnchor ~= leadingAnchor
-            label.trailingAnchor ~= trailingAnchor
+            label.leadingAnchor ~= leadingAnchor + 8
+            label.trailingAnchor ~= trailingAnchor - 8
+            label.textAlignment = .center
+            label.font = UIFont.systemFont(ofSize: 14)
             label.text = data.title
             
             let line = UIView()
@@ -112,7 +132,7 @@ class TimelineView: UIView {
             line.leadingAnchor ~= leadingAnchor
             line.trailingAnchor ~= trailingAnchor
             let desiredWidthConstraint = line.widthAnchor.constraint(equalToConstant: CGFloat(durationInHours) * TimelineView.pointPerHout)
-            desiredWidthConstraint.priority = UILayoutPriority(rawValue: 751)
+            desiredWidthConstraint.priority = UILayoutPriority(rawValue: 749)
             desiredWidthConstraint.isActive = true
             line.backgroundColor = fillColor
             line.layer.cornerRadius = TimelineView.lineHeight / 2

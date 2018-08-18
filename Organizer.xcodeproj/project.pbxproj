@@ -16,6 +16,7 @@
 		049503F02128621700760EDE /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503EF2128621700760EDE /* TimelineView.swift */; };
 		049503F22128623900760EDE /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503F12128623900760EDE /* TimelineViewModel.swift */; };
 		049503F5212864B200760EDE /* LayoutMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503F4212864B200760EDE /* LayoutMagic.swift */; };
+		049503FD2128772900760EDE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503FC2128772900760EDE /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		049503EF2128621700760EDE /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		049503F12128623900760EDE /* TimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
 		049503F4212864B200760EDE /* LayoutMagic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutMagic.swift; sourceTree = "<group>"; };
+		049503FC2128772900760EDE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				049503F4212864B200760EDE /* LayoutMagic.swift */,
+				049503FC2128772900760EDE /* UIColor+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				049503D021285F2A00760EDE /* TimelineViewController.swift in Sources */,
 				049503F22128623900760EDE /* TimelineViewModel.swift in Sources */,
 				049503F5212864B200760EDE /* LayoutMagic.swift in Sources */,
+				049503FD2128772900760EDE /* UIColor+Extension.swift in Sources */,
 				049503F02128621700760EDE /* TimelineView.swift in Sources */,
 				049503CE21285F2A00760EDE /* AppDelegate.swift in Sources */,
 			);
