@@ -10,25 +10,32 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Timeline View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Organizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TimelineViewController" customModule="Organizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lIj-76-rAm">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lIj-76-rAm">
                                 <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qc0-cd-93X">
-                                        <rect key="frame" x="-10" y="-39" width="240" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qc0-cd-93X" customClass="TimelineView" customModule="Organizer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" placeholder="YES" id="vUp-BV-8xj"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="qc0-cd-93X" firstAttribute="height" secondItem="lIj-76-rAm" secondAttribute="height" id="25C-Oh-oYb"/>
+                                    <constraint firstItem="qc0-cd-93X" firstAttribute="top" secondItem="lIj-76-rAm" secondAttribute="top" id="64F-wP-5wa"/>
                                     <constraint firstAttribute="height" constant="50" id="f9n-h8-5H4"/>
+                                    <constraint firstAttribute="bottom" secondItem="qc0-cd-93X" secondAttribute="bottom" id="hfy-pI-yJc"/>
+                                    <constraint firstAttribute="trailing" secondItem="qc0-cd-93X" secondAttribute="trailing" id="iJ3-0B-7fs"/>
+                                    <constraint firstItem="qc0-cd-93X" firstAttribute="leading" secondItem="lIj-76-rAm" secondAttribute="leading" id="lWc-53-8Hd"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -43,6 +50,9 @@
                     <navigationItem key="navigationItem" id="6W2-EF-iVf">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="25S-R1-XjD"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="timelineView" destination="qc0-cd-93X" id="2hy-Wb-a9t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
