@@ -18,15 +18,15 @@ class TimelineView: UIView {
         didSet {
             lineWidthConstraint.isActive = data.isEmpty
             
-            for item in data {
-                addEventToTimeline(model: item)
+            for (index, item) in data.enumerated() {
+                addEventToTimeline(model: item, at: index)
             }
         }
     }
     /**
      Вызывается, когда тапаем по событию на таймлайне
     */
-    var didSelectEvent: ((_ event: TimelineModel) -> Void)?
+    var onSelectEvent: ((_ event: TimelineModel) -> Void)?
     
     // MARK: - Private static vars
     private static let lineHeight: CGFloat = 5
@@ -81,9 +81,20 @@ class TimelineView: UIView {
         eventsStackView.spacing = eventsSpacing
     }
     
-    private func addEventToTimeline(model: TimelineModel) {
+    private func addEventToTimeline(model: TimelineModel, at index: Int) {
         let eventView = TimelineEventView(data: model)
+        eventView.tag = index
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(eventTapped(_:)))
+        eventView.addGestureRecognizer(gestureRecognizer)
         eventsStackView.addArrangedSubview(eventView.prepareForAutoLayout())
+    }
+    
+    @objc private func eventTapped(_ sender: UITapGestureRecognizer) {
+        guard let index = sender.view?.tag else {
+            return
+        }
+        onSelectEvent?(data[index])
+        print("event at index \(index) tapped")
     }
     
     @IBDesignable
@@ -96,6 +107,7 @@ class TimelineView: UIView {
         init(data: TimelineModel) {
             self.data = data
             super.init(frame: .zero)
+            isUserInteractionEnabled = true
             addSubviews()
         }
         
@@ -106,9 +118,7 @@ class TimelineView: UIView {
         private func addSubviews() {
             let label = UILabel()
             addSubview(label.prepareForAutoLayout())
-            let labelToTopConstraint = label.topAnchor.constraint(equalTo: topAnchor)
-//            labelToTopConstraint.priority = UILayoutPriority(rawValue: 749)
-            labelToTopConstraint.isActive = true
+            label.topAnchor ~= topAnchor
             label.leadingAnchor ~= leadingAnchor + 8
             label.trailingAnchor ~= trailingAnchor - 8
             label.textAlignment = .center
