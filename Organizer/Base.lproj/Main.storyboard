@@ -51,6 +51,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="25S-R1-XjD"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="timelineScrollView" destination="lIj-76-rAm" id="Xtg-Kr-ySc"/>
                         <outlet property="timelineView" destination="qc0-cd-93X" id="2hy-Wb-a9t"/>
                     </connections>
                 </viewController>
