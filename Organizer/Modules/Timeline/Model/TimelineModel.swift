@@ -9,14 +9,14 @@
 import Foundation
 
 class TimelineModel {
-    var id: Int
+    var id: Int!
     var title: String
     var start: Date
     var end: Date
     var description: String
     var type: EventType
     
-    init(id: Int, title: String, start: Date, end: Date, type: EventType, description: String) {
+    init(id: Int?, title: String, start: Date, end: Date, type: EventType, description: String) {
         self.id = id
         self.title = title
         self.start = start

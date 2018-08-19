@@ -14,7 +14,7 @@ enum Containers {
         Dip.logLevel = .Errors
         
         let container = DependencyContainer()
-        container.register(.unique) { TimelineviewmodelStub() as TimelineViewmodelProtocol }
+        container.register(.weakSingleton) { TimelineviewmodelStub() as TimelineViewmodelProtocol }
         
         return container
     }()

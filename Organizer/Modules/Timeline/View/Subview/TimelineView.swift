@@ -18,6 +18,9 @@ class TimelineView: UIView {
         didSet {
             lineWidthConstraint.isActive = data.isEmpty
             
+            for item in eventsStackView.arrangedSubviews {
+                item.removeFromSuperview()
+            }
             for (index, item) in data.enumerated() {
                 addEventToTimeline(model: item, at: index)
             }

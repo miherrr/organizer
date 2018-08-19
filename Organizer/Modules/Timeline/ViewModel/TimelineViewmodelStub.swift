@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TimelineviewmodelStub: TimelineViewmodelProtocol {    
+class TimelineviewmodelStub: TimelineViewmodelProtocol {
     private var _data: [TimelineModel] = []
     var data: [TimelineModel] {
         return _data.sorted(by: { (item1, item2) -> Bool in
@@ -77,7 +77,21 @@ class TimelineviewmodelStub: TimelineViewmodelProtocol {
         _data.remove(at: index)
         onCompleted?()
     }
-    func update(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
+    
+    func addOrUpdate(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
+        if event.id != nil {
+            update(event: event, onCompleted: onCompleted, onTimeBusy: onTimeBusy)
+        } else {
+            event.id = getNextId()
+            add(event: event, onCompleted: onCompleted, onTimeBusy: onTimeBusy)
+        }
+    }
+    
+    private func getNextId() -> Int {
+        return data.map { $0.id }.max()! + 1
+    }
+    
+    private func update(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
         guard let index = index(for: event.id) else {
             return
         }
@@ -89,7 +103,7 @@ class TimelineviewmodelStub: TimelineViewmodelProtocol {
         }
     }
     
-    func add(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
+    private func add(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
         if isTimeRangeAvailable(start: event.start, end: event.end) {
             _data.append(event)
             onCompleted?()

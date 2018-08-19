@@ -112,7 +112,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="6W2-EF-iVf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="25S-R1-XjD"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="25S-R1-XjD">
+                            <connections>
+                                <segue destination="Mbb-Ee-cq1" kind="presentation" id="jNf-Mb-ZO7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionLabel" destination="Lqx-Zi-mQ2" id="HFn-uR-Uq6"/>
@@ -126,7 +130,170 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="132.68365817091455"/>
+            <point key="canvasLocation" x="932" y="133"/>
+        </scene>
+        <!--Event Editor View Controller-->
+        <scene sceneID="ONJ-ty-BEW">
+            <objects>
+                <viewController id="Mbb-Ee-cq1" customClass="EventEditorViewController" customModule="Organizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QU7-o2-gVJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-DW-4Yg">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="hGi-JG-JLj">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DBH-Ci-x0X">
+                                            <connections>
+                                                <action selector="cancel:" destination="Mbb-Ee-cq1" id="QCh-mP-cbL"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="QUR-wq-qgM">
+                                            <connections>
+                                                <action selector="save:" destination="Mbb-Ee-cq1" id="o4e-5E-9nO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FIO-Zw-a89">
+                                <rect key="frame" x="0.0" y="64" width="375" height="1086"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bw2-tg-hPP">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1036.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pku-gT-yLG">
+                                                <rect key="frame" x="20" y="20" width="335" height="996.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заголовок" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFq-ye-GpZ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите заголовок" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kUz-oN-2uz">
+                                                        <rect key="frame" x="0.0" y="28.5" width="335" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYf-PN-1JM">
+                                                        <rect key="frame" x="0.0" y="66.5" width="335" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите описание" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KXI-33-Ysc">
+                                                        <rect key="frame" x="0.0" y="95" width="335" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время начала" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCB-wC-tgC">
+                                                        <rect key="frame" x="0.0" y="133" width="335" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберите время начала" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VaB-v2-hZa">
+                                                        <rect key="frame" x="0.0" y="161.5" width="335" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JJD-8b-qpT">
+                                                        <rect key="frame" x="0.0" y="199.5" width="335" height="216"/>
+                                                        <date key="date" timeIntervalSinceReferenceDate="556390567.41050398">
+                                                            <!--2018-08-19 16:56:07 +0000-->
+                                                        </date>
+                                                    </datePicker>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время окончания" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEX-f8-hfG">
+                                                        <rect key="frame" x="0.0" y="423.5" width="335" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберите время окончания" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jsI-kD-My4">
+                                                        <rect key="frame" x="0.0" y="452" width="335" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="mxZ-Oe-X9G">
+                                                        <rect key="frame" x="0.0" y="490" width="335" height="216"/>
+                                                        <date key="date" timeIntervalSinceReferenceDate="556390585.34389198">
+                                                            <!--2018-08-19 16:56:25 +0000-->
+                                                        </date>
+                                                    </datePicker>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тип" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sox-hP-VOU">
+                                                        <rect key="frame" x="0.0" y="714" width="335" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Выберите тип события" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pt9-ZK-Gfi">
+                                                        <rect key="frame" x="0.0" y="742.5" width="335" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9j-Cw-K3U">
+                                                        <rect key="frame" x="0.0" y="780.5" width="335" height="216"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="Mbb-Ee-cq1" id="UZq-yS-kU6"/>
+                                                            <outlet property="delegate" destination="Mbb-Ee-cq1" id="gXK-f6-SHj"/>
+                                                        </connections>
+                                                    </pickerView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Pku-gT-yLG" secondAttribute="bottom" constant="20" symbolic="YES" id="Eu5-AU-qFl"/>
+                                            <constraint firstAttribute="trailing" secondItem="Pku-gT-yLG" secondAttribute="trailing" constant="20" symbolic="YES" id="Vrj-Zn-GcL"/>
+                                            <constraint firstItem="Pku-gT-yLG" firstAttribute="leading" secondItem="bw2-tg-hPP" secondAttribute="leading" constant="20" symbolic="YES" id="cMd-Gg-3nm"/>
+                                            <constraint firstItem="Pku-gT-yLG" firstAttribute="top" secondItem="bw2-tg-hPP" secondAttribute="top" constant="20" symbolic="YES" id="qFh-xt-U9J"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="bw2-tg-hPP" firstAttribute="leading" secondItem="FIO-Zw-a89" secondAttribute="leading" id="4Vj-Vb-OG7"/>
+                                    <constraint firstAttribute="trailing" secondItem="bw2-tg-hPP" secondAttribute="trailing" id="BnB-NL-T6m"/>
+                                    <constraint firstAttribute="bottom" secondItem="bw2-tg-hPP" secondAttribute="bottom" id="Mtu-m3-icd"/>
+                                    <constraint firstItem="bw2-tg-hPP" firstAttribute="top" secondItem="FIO-Zw-a89" secondAttribute="top" id="OIb-Vz-2xd"/>
+                                    <constraint firstItem="bw2-tg-hPP" firstAttribute="width" secondItem="FIO-Zw-a89" secondAttribute="width" id="rnD-PB-tIl"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Vot-WO-f9b" firstAttribute="bottom" secondItem="FIO-Zw-a89" secondAttribute="bottom" id="7Mw-G6-w0d"/>
+                            <constraint firstItem="Ysw-DW-4Yg" firstAttribute="top" secondItem="Vot-WO-f9b" secondAttribute="top" id="Cw5-bw-7w9"/>
+                            <constraint firstItem="Vot-WO-f9b" firstAttribute="trailing" secondItem="Ysw-DW-4Yg" secondAttribute="trailing" id="DGf-Cl-UeK"/>
+                            <constraint firstItem="FIO-Zw-a89" firstAttribute="top" secondItem="Ysw-DW-4Yg" secondAttribute="bottom" id="eh5-lT-UvK"/>
+                            <constraint firstItem="Ysw-DW-4Yg" firstAttribute="leading" secondItem="QU7-o2-gVJ" secondAttribute="leading" id="gPM-3d-cUd"/>
+                            <constraint firstItem="Vot-WO-f9b" firstAttribute="trailing" secondItem="FIO-Zw-a89" secondAttribute="trailing" id="uem-Ez-wJ7"/>
+                            <constraint firstItem="FIO-Zw-a89" firstAttribute="leading" secondItem="Vot-WO-f9b" secondAttribute="leading" id="vtB-TG-u4p"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vot-WO-f9b"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="1150"/>
+                    <connections>
+                        <outlet property="descriptionTF" destination="KXI-33-Ysc" id="OCO-C5-tjV"/>
+                        <outlet property="endPickerView" destination="mxZ-Oe-X9G" id="aEY-0X-AE7"/>
+                        <outlet property="endTF" destination="jsI-kD-My4" id="rrY-to-nXh"/>
+                        <outlet property="stackView" destination="Pku-gT-yLG" id="zbt-LU-JHt"/>
+                        <outlet property="startPickerView" destination="JJD-8b-qpT" id="6YJ-Dw-hSK"/>
+                        <outlet property="startTF" destination="VaB-v2-hZa" id="owS-lp-9Df"/>
+                        <outlet property="titleTF" destination="kUz-oN-2uz" id="xIi-ps-Rht"/>
+                        <outlet property="typePickerView" destination="K9j-Cw-K3U" id="3A9-s6-YNc"/>
+                        <outlet property="typeTF" destination="Pt9-ZK-Gfi" id="90O-7R-wlz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ee-vT-9Kj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1786" y="-314"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="scF-eA-Mrm">
