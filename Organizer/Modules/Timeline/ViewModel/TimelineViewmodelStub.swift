@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TimelineviewmodelStub: TimelineViewmodelProtocol {
+class TimelineviewmodelStub: TimelineViewmodelProtocol {    
     private var _data: [TimelineModel] = []
     var data: [TimelineModel] {
         return _data.sorted(by: { (item1, item2) -> Bool in
@@ -50,21 +50,51 @@ class TimelineviewmodelStub: TimelineViewmodelProtocol {
         onCompleted?()
     }
     
-    func delete(with id: Int, onCompleted: (() -> Void)?) {
-        _data.remove(at: _data.index(where: { item -> Bool in
-            item.id == id
-        })!)
-        onCompleted?()
-    }
-    func update(event: TimelineModel, onCompleted: (() -> Void)?) {
-        _data[_data.index(where: { item -> Bool in
-            item.id == event.id
-        })!] = event
-        onCompleted?()
+    // MARK: - Private methods
+    private func isTimeRangeAvailable(start: Date, end: Date) -> Bool {
+        for item in data {
+            /*
+             если желаемое начало или конец события находятся в границах одно из существующих событий,
+             то такое событие нельзя создать, потому что мы заняты в это время
+            */
+            if start > item.start && start < item.end
+                || end > item.start && end < item.end {
+                return false
+            }
+        }
+        return true
     }
     
-    func add(event: TimelineModel, onCompleted: (() -> Void)?) {
-        _data.append(event)
+    private func index(for id: Int) -> Array<Any>.Index? {
+        return _data.index(where: { item -> Bool in item.id == id })
+    }
+    
+    // MARK: - Public methods
+    func delete(with id: Int, onCompleted: (() -> Void)?) {
+        guard let index = index(for: id) else {
+            return
+        }
+        _data.remove(at: index)
         onCompleted?()
+    }
+    func update(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
+        guard let index = index(for: event.id) else {
+            return
+        }
+        if isTimeRangeAvailable(start: event.start, end: event.end) {
+            _data[index] = event
+            onCompleted?()
+        } else {
+            onTimeBusy?()
+        }
+    }
+    
+    func add(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
+        if isTimeRangeAvailable(start: event.start, end: event.end) {
+            _data.append(event)
+            onCompleted?()
+        } else {
+            onTimeBusy?()
+        }
     }
 }
