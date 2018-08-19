@@ -18,6 +18,8 @@
 		049503F5212864B200760EDE /* LayoutMagic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503F4212864B200760EDE /* LayoutMagic.swift */; };
 		049503FD2128772900760EDE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503FC2128772900760EDE /* UIColor+Extension.swift */; };
 		049503FF21287B4D00760EDE /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503FE21287B4D00760EDE /* EventType.swift */; };
+		049504032129A8C700760EDE /* TimelineViewmodelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049504022129A8C700760EDE /* TimelineViewmodelProtocol.swift */; };
+		049504052129A95900760EDE /* TimelineViewmodelStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049504042129A95900760EDE /* TimelineViewmodelStub.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		049503F4212864B200760EDE /* LayoutMagic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutMagic.swift; sourceTree = "<group>"; };
 		049503FC2128772900760EDE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		049503FE21287B4D00760EDE /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		049504022129A8C700760EDE /* TimelineViewmodelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewmodelProtocol.swift; sourceTree = "<group>"; };
+		049504042129A95900760EDE /* TimelineViewmodelStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewmodelStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,8 @@
 		049503FB212871C100760EDE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				049504022129A8C700760EDE /* TimelineViewmodelProtocol.swift */,
+				049504042129A95900760EDE /* TimelineViewmodelStub.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -269,12 +275,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				049503FF21287B4D00760EDE /* EventType.swift in Sources */,
+				049504052129A95900760EDE /* TimelineViewmodelStub.swift in Sources */,
 				049503D021285F2A00760EDE /* TimelineViewController.swift in Sources */,
 				049503F22128623900760EDE /* TimelineModel.swift in Sources */,
 				049503F5212864B200760EDE /* LayoutMagic.swift in Sources */,
 				049503FD2128772900760EDE /* UIColor+Extension.swift in Sources */,
 				049503F02128621700760EDE /* TimelineView.swift in Sources */,
 				049503CE21285F2A00760EDE /* AppDelegate.swift in Sources */,
+				049504032129A8C700760EDE /* TimelineViewmodelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
