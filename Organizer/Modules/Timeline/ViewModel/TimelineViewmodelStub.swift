@@ -18,6 +18,7 @@ class TimelineviewmodelStub: TimelineViewmodelProtocol {
             TimelineModel(id: 2, title: "Долгое", start: Date(), end: Date().addingTimeInterval(120_000), type: EventType.routine, description: "test3"),
             TimelineModel(id: 3, title: "Короткое событие с удивительно длинным названием", start: Date(), end: Date().addingTimeInterval(3_600), type: EventType.important, description: "test4")
         ]
+        onCompleted?()
     }
     
     func delete(with id: Int, onCompleted: (() -> Void)?) {
