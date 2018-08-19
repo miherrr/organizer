@@ -31,12 +31,12 @@ class TimelineView: UIView {
     // MARK: - Private static vars
     private static let lineHeight: CGFloat = 5
     private static let maxEventWidth: CGFloat = 300
+    private let eventsSpacing: CGFloat = 15
     // события разной длины. Эта константа указывает, сколько точек будет приходиться на час события
     private static let pointPerHout: CGFloat = 10
     
     // MARK: - Private vars
-    private let eventsSpacing: CGFloat = 15
-
+    private var selectedEventId: Int?
     private var lineWidthConstraint: NSLayoutConstraint!
     private var container: UIView!
     private var eventsStackView: UIStackView!
@@ -94,13 +94,31 @@ class TimelineView: UIView {
         guard let index = sender.view?.tag else {
             return
         }
-        onSelectEvent?(data[index])
-        print("event at index \(index) tapped")
+        select(eventId: data[index].id)
+    }
+    
+    // MARK: - Public methods
+    func select(eventId: Int) {
+        //делаем unselect старого
+        if let currentSelectedId = selectedEventId,
+            let currentIndex = data.index(where: { item -> Bool in item.id == currentSelectedId }),
+            let eventView = eventsStackView.arrangedSubviews[currentIndex] as? TimelineEventView {
+            eventView.select(true)
+        }
+        //выделяем новое
+        if let newIndex = data.index(where: { item -> Bool in item.id == eventId }),
+            let eventView = eventsStackView.arrangedSubviews[newIndex] as? TimelineEventView {
+            eventView.select()
+            selectedEventId = eventId
+            onSelectEvent?(data[newIndex])
+        }
+        
     }
     
     @IBDesignable
     class TimelineEventView: UIView {
         private let data: TimelineModel
+        private var line: UIView!
         private var dateFormatter: DateFormatter {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd/MM/yyyy HH:mm"
@@ -148,7 +166,7 @@ class TimelineView: UIView {
             endDateLabel.text = dateFormatter.string(from: data.end)
             endDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 742), for: .vertical)
             
-            let line = UIView()
+            line = UIView()
             addSubview(line.prepareForAutoLayout())
             line.heightAnchor ~= TimelineView.lineHeight
             line.widthAnchor.constraint(lessThanOrEqualToConstant: TimelineView.maxEventWidth).isActive = true
@@ -162,6 +180,13 @@ class TimelineView: UIView {
             
             line.topAnchor ~= endDateLabel.bottomAnchor + 8
             startDatelabel.topAnchor ~= line.bottomAnchor + 8
+        }
+        
+        func select(_ unselect: Bool = false) {
+            let scaleTransform = CGAffineTransform(scaleX: 1, y: 2)
+            UIView.animate(withDuration: 0.2, animations: {
+                self.line.transform = unselect ? .identity : scaleTransform
+            }, completion: nil)
         }
     }
 }
