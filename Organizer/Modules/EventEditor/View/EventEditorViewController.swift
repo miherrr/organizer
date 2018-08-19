@@ -24,15 +24,7 @@ class EventEditorViewController: ParentViewController {
     @IBOutlet weak var endPickerView: UIDatePicker!
     @IBOutlet weak var typePickerView: UIPickerView!
     
-    var currentEvent: TimelineModel? {
-        didSet {
-            titleTF.text = currentEvent?.title
-            descriptionTF.text = currentEvent?.description
-            startTF.text = dateFormatter.string(from: currentEvent!.start)
-            endTF.text = dateFormatter.string(from: currentEvent!.end)
-            typeTF.text = currentEvent?.type.desctiption
-        }
-    }
+    var currentEvent: TimelineModel?
     var onSaved: (() -> Void)?
     
     private var pickedType: EventType?
@@ -40,6 +32,21 @@ class EventEditorViewController: ParentViewController {
     private var pickedEndDate: Date?
     
     private var viewModel: TimelineViewmodelProtocol!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let event = currentEvent else {
+            return
+        }
+        titleTF.text = event.title
+        descriptionTF.text = event.description
+        startTF.text = dateFormatter.string(from: event.start)
+        startPickerView.date = event.start
+        endTF.text = dateFormatter.string(from: event.end)
+        endPickerView.date = event.end
+        typeTF.text = event.type.desctiption
+        typePickerView.selectRow(EventType.allCases.index(of: event.type)!, inComponent: 0, animated: false)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

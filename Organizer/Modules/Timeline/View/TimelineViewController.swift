@@ -37,6 +37,7 @@ class TimelineViewController: UIViewController {
         }
     
         timelineView.onSelectEvent = { [unowned self] event in
+            self.selectedId = event.id
             self.navigationItem.title = event.title
             self.titleLabel.text = "Заголовок: \(event.title)"
             
@@ -48,6 +49,17 @@ class TimelineViewController: UIViewController {
             self.typeLabel.text = "Тип: \(event.type.desctiption)"
         }
         timelineScrollView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "edit" {
+            guard let destination = segue.destination as? EventEditorViewController else {
+                return
+            }
+            destination.currentEvent = viewModel.data.first(where: { model -> Bool in
+                model.id == self.selectedId
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

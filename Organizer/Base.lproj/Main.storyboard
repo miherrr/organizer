@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,7 +44,7 @@
                                 <rect key="frame" x="0.0" y="152" width="375" height="515"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPJ-Ta-XVP">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="254.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="G7W-JF-K7c">
                                                 <rect key="frame" x="20" y="20" width="335" height="134.5"/>
@@ -80,13 +81,30 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZn-yY-yuB">
+                                                <rect key="frame" x="147.5" y="154.5" width="80" height="80"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="zZn-yY-yuB" secondAttribute="height" multiplier="1:1" id="YkF-eS-bgc"/>
+                                                    <constraint firstAttribute="width" constant="80" id="hBc-fq-nz8"/>
+                                                </constraints>
+                                                <state key="normal" title="Изменить"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="40"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <segue destination="Mbb-Ee-cq1" kind="presentation" identifier="edit" id="kOA-Ge-kZP"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="G7W-JF-K7c" firstAttribute="top" secondItem="BPJ-Ta-XVP" secondAttribute="top" constant="20" symbolic="YES" id="37m-AK-t9c"/>
-                                            <constraint firstAttribute="bottom" secondItem="G7W-JF-K7c" secondAttribute="bottom" constant="20" symbolic="YES" id="DB4-QJ-FNd"/>
                                             <constraint firstAttribute="trailing" secondItem="G7W-JF-K7c" secondAttribute="trailing" constant="20" symbolic="YES" id="FUP-NM-4H5"/>
+                                            <constraint firstItem="zZn-yY-yuB" firstAttribute="top" secondItem="G7W-JF-K7c" secondAttribute="bottom" id="PMv-F2-wfh"/>
                                             <constraint firstItem="G7W-JF-K7c" firstAttribute="leading" secondItem="BPJ-Ta-XVP" secondAttribute="leading" constant="20" symbolic="YES" id="dVf-Jz-a0R"/>
+                                            <constraint firstItem="zZn-yY-yuB" firstAttribute="centerX" secondItem="BPJ-Ta-XVP" secondAttribute="centerX" id="kHX-wv-iGH"/>
+                                            <constraint firstAttribute="bottom" secondItem="zZn-yY-yuB" secondAttribute="bottom" constant="20" symbolic="YES" id="kSV-Yb-wH6"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -314,4 +332,7 @@
             <point key="canvasLocation" x="144.80000000000001" y="-564.46776611694156"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="kOA-Ge-kZP"/>
+    </inferredMetricsTieBreakers>
 </document>
