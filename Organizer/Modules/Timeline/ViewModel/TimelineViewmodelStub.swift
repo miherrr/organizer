@@ -77,6 +77,7 @@ class TimelineviewmodelStub: TimelineViewmodelProtocol {
         _data.remove(at: index)
         onCompleted?()
     }
+    
     func update(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
         guard let index = index(for: event.id) else {
             return

@@ -132,10 +132,10 @@
             </objects>
             <point key="canvasLocation" x="932" y="133"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Editor View Controller-->
         <scene sceneID="ONJ-ty-BEW">
             <objects>
-                <viewController id="Mbb-Ee-cq1" sceneMemberID="viewController">
+                <viewController id="Mbb-Ee-cq1" customClass="EventEditorViewController" customModule="Organizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QU7-o2-gVJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,8 +144,16 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="hGi-JG-JLj">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DBH-Ci-x0X"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="QUR-wq-qgM"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DBH-Ci-x0X">
+                                            <connections>
+                                                <action selector="cancel:" destination="Mbb-Ee-cq1" id="QCh-mP-cbL"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="QUR-wq-qgM">
+                                            <connections>
+                                                <action selector="save:" destination="Mbb-Ee-cq1" id="o4e-5E-9nO"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -232,6 +240,10 @@
                                                     </textField>
                                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K9j-Cw-K3U">
                                                         <rect key="frame" x="0.0" y="780.5" width="335" height="216"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="Mbb-Ee-cq1" id="UZq-yS-kU6"/>
+                                                            <outlet property="delegate" destination="Mbb-Ee-cq1" id="gXK-f6-SHj"/>
+                                                        </connections>
                                                     </pickerView>
                                                 </subviews>
                                             </stackView>
@@ -267,6 +279,17 @@
                         <viewLayoutGuide key="safeArea" id="Vot-WO-f9b"/>
                     </view>
                     <size key="freeformSize" width="375" height="1150"/>
+                    <connections>
+                        <outlet property="descriptionTF" destination="KXI-33-Ysc" id="OCO-C5-tjV"/>
+                        <outlet property="endPickerView" destination="mxZ-Oe-X9G" id="aEY-0X-AE7"/>
+                        <outlet property="endTF" destination="jsI-kD-My4" id="rrY-to-nXh"/>
+                        <outlet property="stackView" destination="Pku-gT-yLG" id="zbt-LU-JHt"/>
+                        <outlet property="startPickerView" destination="JJD-8b-qpT" id="6YJ-Dw-hSK"/>
+                        <outlet property="startTF" destination="VaB-v2-hZa" id="owS-lp-9Df"/>
+                        <outlet property="titleTF" destination="kUz-oN-2uz" id="xIi-ps-Rht"/>
+                        <outlet property="typePickerView" destination="K9j-Cw-K3U" id="3A9-s6-YNc"/>
+                        <outlet property="typeTF" destination="Pt9-ZK-Gfi" id="90O-7R-wlz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ee-vT-9Kj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

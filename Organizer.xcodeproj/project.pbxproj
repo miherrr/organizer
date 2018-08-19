@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048B98702129DA160088AF8A /* EventEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B986F2129DA160088AF8A /* EventEditorViewController.swift */; };
 		049503CE21285F2A00760EDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503CD21285F2A00760EDE /* AppDelegate.swift */; };
 		049503D021285F2A00760EDE /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049503CF21285F2A00760EDE /* TimelineViewController.swift */; };
 		049503D321285F2A00760EDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 049503D121285F2A00760EDE /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		048B986F2129DA160088AF8A /* EventEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditorViewController.swift; sourceTree = "<group>"; };
 		049503CA21285F2A00760EDE /* Organizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Organizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049503CD21285F2A00760EDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049503CF21285F2A00760EDE /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,22 @@
 				2B1F90FF2081DB0EEF280C38 /* Pods-OrganizerTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		048B986C2129D9D10088AF8A /* EventEditor */ = {
+			isa = PBXGroup;
+			children = (
+				048B986D2129D9E60088AF8A /* View */,
+			);
+			path = EventEditor;
+			sourceTree = "<group>";
+		};
+		048B986D2129D9E60088AF8A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				048B986F2129DA160088AF8A /* EventEditorViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		049503C121285F2A00760EDE = {
@@ -149,6 +167,7 @@
 		049503F62128718600760EDE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				048B986C2129D9D10088AF8A /* EventEditor */,
 				049503F72128718B00760EDE /* Timeline */,
 			);
 			path = Modules;
@@ -390,6 +409,7 @@
 				049503D021285F2A00760EDE /* TimelineViewController.swift in Sources */,
 				049503F22128623900760EDE /* TimelineModel.swift in Sources */,
 				049503F5212864B200760EDE /* LayoutMagic.swift in Sources */,
+				048B98702129DA160088AF8A /* EventEditorViewController.swift in Sources */,
 				049503FD2128772900760EDE /* UIColor+Extension.swift in Sources */,
 				049503F02128621700760EDE /* TimelineView.swift in Sources */,
 				049504092129AB1800760EDE /* Container.swift in Sources */,
