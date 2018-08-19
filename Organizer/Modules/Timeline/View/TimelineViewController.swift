@@ -25,6 +25,16 @@ class TimelineViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = try! Containers.container.resolve()
+        
+        viewModel.loadData {
+            self.timelineView.data = self.viewModel.data
+            if let currentSelection = self.selectedId {
+                self.timelineView.select(eventId: currentSelection)
+            } else if !self.viewModel.data.isEmpty {
+                self.selectedId = self.viewModel.data[0].id
+                self.timelineView.select(eventId: self.viewModel.data[0].id)
+            }
+        }
     
         timelineView.onSelectEvent = { [unowned self] event in
             self.navigationItem.title = event.title
@@ -41,14 +51,12 @@ class TimelineViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.loadData {
-            self.timelineView.data = self.viewModel.data
-            if let currentSelection = self.selectedId {
-                self.timelineView.select(eventId: currentSelection)
-            } else if !self.viewModel.data.isEmpty {
-                self.selectedId = self.viewModel.data[0].id
-                self.timelineView.select(eventId: self.viewModel.data[0].id)
-            }
+        self.timelineView.data = self.viewModel.data
+        if let currentSelection = self.selectedId {
+            self.timelineView.select(eventId: currentSelection)
+        } else if !self.viewModel.data.isEmpty {
+            self.selectedId = self.viewModel.data[0].id
+            self.timelineView.select(eventId: self.viewModel.data[0].id)
         }
     }
 }
