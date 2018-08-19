@@ -9,7 +9,7 @@
 import Foundation
 
 class TimelineModel {
-    var id: Int
+    var id: Int!
     var title: String
     var start: Date
     var end: Date

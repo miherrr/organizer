@@ -12,6 +12,5 @@ protocol TimelineViewmodelProtocol {
     var data: [TimelineModel] { get }
     func loadData(onCompleted: (() -> Void)?)
     func delete(with id: Int, onCompleted: (() -> Void)?)
-    func update(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?)
-    func add(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?)
+    func addOrUpdate(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?)
 }
