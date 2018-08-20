@@ -26,25 +26,13 @@ class TimelineModel: Object {
         }
     }
     
-    init(id: String?, title: String, start: Date, end: Date, type: EventType, description: String) {
+    convenience init(id: String?, title: String, start: Date, end: Date, type: EventType, description: String) {
+        self.init()
         self.id = id
         self.title = title
         self.start = start
         self.end = end
-        super.init()
         self.type = type
         self.desc = description
-    }
-    
-    required init() {
-        fatalError("init() has not been implemented")
-    }
-    
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        fatalError("init(realm:schema:) has not been implemented")
-    }
-    
-    required init(value: Any, schema: RLMSchema) {
-        fatalError("init(value:schema:) has not been implemented")
     }
 }

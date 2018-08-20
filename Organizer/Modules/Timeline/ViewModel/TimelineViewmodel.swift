@@ -7,8 +7,14 @@
 //
 
 import Foundation
+import RealmSwift
 
 class TimelineViewmodel: TimelineViewmodelProtocol {
+    var realm: Realm!
+    init() {
+        realm = try! Realm()
+    }
+    
     private var _data: [TimelineModel] = []
     var data: [TimelineModel] {
         return _data.sorted(by: { (item1, item2) -> Bool in
@@ -17,7 +23,8 @@ class TimelineViewmodel: TimelineViewmodelProtocol {
     }
     
     func loadData(onCompleted: (() -> Void)?) {
-        fatalError("not implemented")
+        let result = realm.objects(TimelineModel.self)
+        _data = Array(result)
     }
     
     func delete(with id: String, onCompleted: (() -> Void)?) {
