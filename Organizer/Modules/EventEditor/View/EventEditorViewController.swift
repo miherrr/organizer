@@ -20,9 +20,10 @@ class EventEditorViewController: ParentViewController {
     @IBOutlet private weak var startTF: UITextField!
     @IBOutlet private weak var endTF: UITextField!
     @IBOutlet private weak var typeTF: UITextField!
-    @IBOutlet weak var startPickerView: UIDatePicker!
-    @IBOutlet weak var endPickerView: UIDatePicker!
-    @IBOutlet weak var typePickerView: UIPickerView!
+    @IBOutlet private weak var startPickerView: UIDatePicker!
+    @IBOutlet private weak var endPickerView: UIDatePicker!
+    @IBOutlet private weak var typePickerView: UIPickerView!
+    @IBOutlet private weak var deleteButton: UIBarButtonItem!
     
     var currentEvent: TimelineModel?
     var onSaved: (() -> Void)?
@@ -36,8 +37,11 @@ class EventEditorViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let event = currentEvent else {
+            deleteButton.isEnabled = false
             return
         }
+        deleteButton.isEnabled = true
+        
         titleTF.text = event.title
         descriptionTF.text = event.description
         startTF.text = dateFormatter.string(from: event.start)
@@ -101,6 +105,19 @@ class EventEditorViewController: ParentViewController {
         }) {
             self.showMessage(message: "На выбранное время уже назначено событие")
         }
+    }
+    @IBAction func deleteEvent(_ sender: Any) {
+        let optionMenu = UIAlertController(title: nil, message: "Выберите вариант", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+            self.viewModel.delete(with: self.currentEvent!.id, onCompleted: {
+                self.dismiss(animated: true, completion: nil)
+            })
+        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        optionMenu.addAction(cancelAction)
+        optionMenu.addAction(deleteAction)
+        
+        present(optionMenu, animated: true, completion: nil)
     }
     
     @objc private func pickDate(_ source: UIDatePicker) {

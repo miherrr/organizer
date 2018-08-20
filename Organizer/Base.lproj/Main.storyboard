@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -86,7 +87,7 @@
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="zZn-yY-yuB" secondAttribute="height" multiplier="1:1" id="YkF-eS-bgc"/>
-                                                    <constraint firstAttribute="width" constant="80" id="hBc-fq-nz8"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="hBc-fq-nz8"/>
                                                 </constraints>
                                                 <state key="normal" title="Изменить"/>
                                                 <userDefinedRuntimeAttributes>
@@ -162,11 +163,18 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="hGi-JG-JLj">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DBH-Ci-x0X">
-                                            <connections>
-                                                <action selector="cancel:" destination="Mbb-Ee-cq1" id="QCh-mP-cbL"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <leftBarButtonItems>
+                                            <barButtonItem systemItem="cancel" id="DBH-Ci-x0X">
+                                                <connections>
+                                                    <action selector="cancel:" destination="Mbb-Ee-cq1" id="QCh-mP-cbL"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem enabled="NO" systemItem="trash" id="PTp-dk-RS2">
+                                                <connections>
+                                                    <action selector="deleteEvent:" destination="Mbb-Ee-cq1" id="chR-gg-DUm"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </leftBarButtonItems>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="QUR-wq-qgM">
                                             <connections>
                                                 <action selector="save:" destination="Mbb-Ee-cq1" id="o4e-5E-9nO"/>
@@ -298,6 +306,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="1150"/>
                     <connections>
+                        <outlet property="deleteButton" destination="PTp-dk-RS2" id="aLd-8S-pJ3"/>
                         <outlet property="descriptionTF" destination="KXI-33-Ysc" id="OCO-C5-tjV"/>
                         <outlet property="endPickerView" destination="mxZ-Oe-X9G" id="aEY-0X-AE7"/>
                         <outlet property="endTF" destination="jsI-kD-My4" id="rrY-to-nXh"/>
@@ -311,7 +320,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ee-vT-9Kj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1786" y="-314"/>
+            <point key="canvasLocation" x="2012" y="-121"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="scF-eA-Mrm">
