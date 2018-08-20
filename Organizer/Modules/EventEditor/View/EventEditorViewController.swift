@@ -43,7 +43,7 @@ class EventEditorViewController: ParentViewController {
         deleteButton.isEnabled = true
         
         titleTF.text = event.title
-        descriptionTF.text = event.description
+        descriptionTF.text = event.desc
         startTF.text = dateFormatter.string(from: event.start)
         startPickerView.date = event.start
         endTF.text = dateFormatter.string(from: event.end)
@@ -79,12 +79,13 @@ class EventEditorViewController: ParentViewController {
         var eventToSave: TimelineModel!
         // редактирование
         if currentEvent != nil {
-            currentEvent?.title = titleTF.text ?? currentEvent!.title
-            currentEvent?.description = descriptionTF.text ?? currentEvent!.description
-            currentEvent?.type = pickedType ?? currentEvent!.type
-            currentEvent?.start = pickedStartDate ?? currentEvent!.start
-            currentEvent?.end = pickedEndDate ?? currentEvent!.end
-            eventToSave = currentEvent
+            eventToSave = TimelineModel(
+                id: currentEvent!.id,
+                title: titleTF.text ?? currentEvent!.title,
+                start: pickedStartDate ?? currentEvent!.start,
+                end: pickedEndDate ?? currentEvent!.end,
+                type: pickedType ?? currentEvent!.type,
+                description: descriptionTF.text ?? currentEvent!.desc)
         } else {
             guard let start = pickedStartDate,
                 let end = pickedEndDate,
@@ -109,7 +110,7 @@ class EventEditorViewController: ParentViewController {
     @IBAction func deleteEvent(_ sender: Any) {
         let optionMenu = UIAlertController(title: nil, message: "Выберите вариант", preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
-            self.viewModel.delete(with: self.currentEvent!.id, onCompleted: {
+            self.viewModel.delete(with: self.currentEvent!.id!, onCompleted: {
                 self.dismiss(animated: true, completion: nil)
             })
         }

@@ -19,7 +19,7 @@ class TimelineViewController: UIViewController {
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var endLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
-    private var selectedId: Int?
+    private var selectedId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class TimelineViewController: UIViewController {
                 self.timelineView.select(eventId: currentSelection)
             } else if !self.viewModel.data.isEmpty {
                 self.selectedId = self.viewModel.data[0].id
-                self.timelineView.select(eventId: self.viewModel.data[0].id)
+                self.timelineView.select(eventId: self.viewModel.data[0].id!)
             }
         }
     
@@ -45,7 +45,7 @@ class TimelineViewController: UIViewController {
             formatter.dateFormat = "dd/MM/yyyy HH:mm"
             self.startLabel.text = "Время начала: \(formatter.string(from: event.start))"
             self.endLabel.text = "Время окончания: \(formatter.string(from: event.end))"
-            self.descriptionLabel.text = "Время описания: \(event.description)"
+            self.descriptionLabel.text = "Описание: \(event.desc)"
             self.typeLabel.text = "Тип: \(event.type.desctiption)"
         }
         timelineScrollView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
@@ -68,7 +68,7 @@ class TimelineViewController: UIViewController {
             self.timelineView.select(eventId: currentSelection)
         } else if !self.viewModel.data.isEmpty {
             self.selectedId = self.viewModel.data[0].id
-            self.timelineView.select(eventId: self.viewModel.data[0].id)
+            self.timelineView.select(eventId: self.viewModel.data[0].id!)
         }
     }
 }

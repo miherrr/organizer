@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum EventType: CaseIterable {
+enum EventType: Int, CaseIterable {
     case important
     case notImportant
     case routine
