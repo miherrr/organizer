@@ -8,6 +8,7 @@ target 'Organizer' do
   # Pods for Organizer
 
   pod "Dip","~> 6.0"
+  pod 'RealmSwift'
 
   inhibit_all_warnings!
 
