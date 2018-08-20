@@ -45,7 +45,7 @@ class TimelineViewController: UIViewController {
             formatter.dateFormat = "dd/MM/yyyy HH:mm"
             self.startLabel.text = "Время начала: \(formatter.string(from: event.start))"
             self.endLabel.text = "Время окончания: \(formatter.string(from: event.end))"
-            self.descriptionLabel.text = "Время описания: \(event.desc)"
+            self.descriptionLabel.text = "Описание: \(event.desc)"
             self.typeLabel.text = "Тип: \(event.type.desctiption)"
         }
         timelineScrollView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)

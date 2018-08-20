@@ -28,7 +28,14 @@ class TimelineViewmodel: TimelineViewmodelProtocol {
     }
     
     func delete(with id: String, onCompleted: (() -> Void)?) {
-        fatalError("not implemented")
+        guard let index = index(for: id) else {
+            return
+        }
+        try! realm.write {
+            realm.delete(_data[index])
+            _data.remove(at: index)
+        }
+        onCompleted?()
     }
     
     func addOrUpdate(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
@@ -68,7 +75,13 @@ class TimelineViewmodel: TimelineViewmodelProtocol {
             return
         }
         if isTimeRangeAvailable(start: event.start, end: event.end) {
-            _data[index] = event
+            try! realm.write {
+                _data[index].desc = event.desc
+                _data[index].title = event.title
+                _data[index].start = event.start
+                _data[index].end = event.end
+                _data[index].type = event.type
+            }
             onCompleted?()
         } else {
             onTimeBusy?()

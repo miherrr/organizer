@@ -79,12 +79,13 @@ class EventEditorViewController: ParentViewController {
         var eventToSave: TimelineModel!
         // редактирование
         if currentEvent != nil {
-            currentEvent?.title = titleTF.text ?? currentEvent!.title
-            currentEvent?.desc = descriptionTF.text ?? currentEvent!.desc
-            currentEvent?.type = pickedType ?? currentEvent!.type
-            currentEvent?.start = pickedStartDate ?? currentEvent!.start
-            currentEvent?.end = pickedEndDate ?? currentEvent!.end
-            eventToSave = currentEvent
+            eventToSave = TimelineModel(
+                id: currentEvent!.id,
+                title: titleTF.text ?? currentEvent!.title,
+                start: pickedStartDate ?? currentEvent!.start,
+                end: pickedEndDate ?? currentEvent!.end,
+                type: pickedType ?? currentEvent!.type,
+                description: descriptionTF.text ?? currentEvent!.desc)
         } else {
             guard let start = pickedStartDate,
                 let end = pickedEndDate,
