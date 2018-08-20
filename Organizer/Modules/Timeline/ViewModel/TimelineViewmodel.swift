@@ -17,15 +17,15 @@ class TimelineViewmodel: TimelineViewmodelProtocol {
     }
     
     func loadData(onCompleted: (() -> Void)?) {
-        <#code#>
+        fatalError("not implemented")
     }
     
-    func delete(with id: Int, onCompleted: (() -> Void)?) {
-        <#code#>
+    func delete(with id: String, onCompleted: (() -> Void)?) {
+        fatalError("not implemented")
     }
     
     func addOrUpdate(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
-        <#code#>
+        fatalError("not implemented")
     }
     
     // MARK: - Private methods
@@ -43,16 +43,16 @@ class TimelineViewmodel: TimelineViewmodelProtocol {
         return true
     }
     
-    private func index(for id: Int) -> Array<Any>.Index? {
+    private func index(for id: String) -> Array<Any>.Index? {
         return _data.index(where: { item -> Bool in item.id == id })
     }
     
-    private func getNextId() -> Int {
-        return data.map { $0.id }.max()! + 1
+    private func getNextId() -> String {
+        return String(Date().timeIntervalSince1970)
     }
     
     private func update(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
-        guard let index = index(for: event.id) else {
+        guard let index = index(for: event.id!) else {
             return
         }
         if isTimeRangeAvailable(start: event.start, end: event.end) {

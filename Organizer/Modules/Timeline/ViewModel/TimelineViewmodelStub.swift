@@ -19,28 +19,28 @@ class TimelineviewmodelStub: TimelineViewmodelProtocol {
     func loadData(onCompleted: (() -> Void)?) {
         _data = [
             TimelineModel(
-                id: 0,
+                id: "0",
                 title: "Первое событие",
                 start: Date().addingTimeInterval(-3_600),
                 end: Date().addingTimeInterval(10_000),
                 type: EventType.important,
                 description: "test"),
             TimelineModel(
-                id: 1,
+                id: "1",
                 title: "Второе событие",
                 start: Date().addingTimeInterval(-2_000),
                 end: Date().addingTimeInterval(20_000),
                 type: EventType.notImportant,
                 description: "test2"),
             TimelineModel(
-                id: 2,
+                id: "2",
                 title: "Долгое",
                 start: Date().addingTimeInterval(1_000),
                 end: Date().addingTimeInterval(120_000),
                 type: EventType.routine,
                 description: "test3"),
             TimelineModel(
-                id: 3,
+                id: "3",
                 title: "Короткое событие с удивительно длинным названием",
                 start: Date().addingTimeInterval(-5_000),
                 end: Date().addingTimeInterval(3_600),
@@ -65,12 +65,12 @@ class TimelineviewmodelStub: TimelineViewmodelProtocol {
         return true
     }
     
-    private func index(for id: Int) -> Array<Any>.Index? {
+    private func index(for id: String) -> Array<Any>.Index? {
         return _data.index(where: { item -> Bool in item.id == id })
     }
     
     // MARK: - Public methods
-    func delete(with id: Int, onCompleted: (() -> Void)?) {
+    func delete(with id: String, onCompleted: (() -> Void)?) {
         guard let index = index(for: id) else {
             return
         }
@@ -87,12 +87,12 @@ class TimelineviewmodelStub: TimelineViewmodelProtocol {
         }
     }
     
-    private func getNextId() -> Int {
-        return data.map { $0.id }.max()! + 1
+    private func getNextId() -> String {
+        return String(Date().timeIntervalSince1970)
     }
     
     private func update(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
-        guard let index = index(for: event.id) else {
+        guard let index = index(for: event.id!) else {
             return
         }
         if isTimeRangeAvailable(start: event.start, end: event.end) {

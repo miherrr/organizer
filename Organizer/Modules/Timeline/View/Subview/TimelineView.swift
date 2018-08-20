@@ -39,7 +39,7 @@ class TimelineView: UIView {
     private static let pointPerHout: CGFloat = 10
     
     // MARK: - Private vars
-    private var selectedEventId: Int?
+    private var selectedEventId: String?
     private var lineWidthConstraint: NSLayoutConstraint!
     private var container: UIView!
     private var eventsStackView: UIStackView!
@@ -97,11 +97,11 @@ class TimelineView: UIView {
         guard let index = sender.view?.tag else {
             return
         }
-        select(eventId: data[index].id)
+        select(eventId: data[index].id!)
     }
     
     // MARK: - Public methods
-    func select(eventId: Int) {
+    func select(eventId: String) {
         //делаем unselect старого
         if let currentSelectedId = selectedEventId,
             let currentIndex = data.index(where: { item -> Bool in item.id == currentSelectedId }),
