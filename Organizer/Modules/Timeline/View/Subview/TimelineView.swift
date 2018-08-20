@@ -157,6 +157,7 @@ class TimelineView: UIView {
             addSubview(startDatelabel.prepareForAutoLayout())
             startDatelabel.bottomAnchor ~= bottomAnchor
             startDatelabel.leadingAnchor ~= leadingAnchor
+            startDatelabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -8).isActive = true
             startDatelabel.font = UIFont.systemFont(ofSize: 12)
             startDatelabel.text = dateFormatter.string(from: data.start)
             startDatelabel.setContentHuggingPriority(UILayoutPriority(rawValue: 741), for: .vertical)
@@ -164,6 +165,7 @@ class TimelineView: UIView {
             let endDateLabel = UILabel()
             addSubview(endDateLabel.prepareForAutoLayout())
             endDateLabel.trailingAnchor ~= trailingAnchor
+            endDateLabel.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 8).isActive = true
             endDateLabel.topAnchor ~= titleLabel.bottomAnchor + 8
             endDateLabel.font = UIFont.systemFont(ofSize: 12)
             endDateLabel.text = dateFormatter.string(from: data.end)

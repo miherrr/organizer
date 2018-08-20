@@ -32,7 +32,12 @@ class TimelineViewmodel: TimelineViewmodelProtocol {
     }
     
     func addOrUpdate(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
-        fatalError("not implemented")
+        if event.id != nil {
+            update(event: event, onCompleted: onCompleted, onTimeBusy: onTimeBusy)
+        } else {
+            event.id = getNextId()
+            add(event: event, onCompleted: onCompleted, onTimeBusy: onTimeBusy)
+        }
     }
     
     // MARK: - Private methods
@@ -72,6 +77,9 @@ class TimelineViewmodel: TimelineViewmodelProtocol {
     
     private func add(event: TimelineModel, onCompleted: (() -> Void)?, onTimeBusy: (() -> Void)?) {
         if isTimeRangeAvailable(start: event.start, end: event.end) {
+            try! realm.write {
+                realm.add(event)
+            }
             _data.append(event)
             onCompleted?()
         } else {
